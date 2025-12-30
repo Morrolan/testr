@@ -17,6 +17,13 @@ A TUI dashboard for pytest that shows live progress, groups failures by file/fea
 pip install -r requirements.txt
 ```
 
+or:
+
+```bash
+. .venv/bin/activate
+uv sync
+```
+
 2) Run the dashboard directly:
 ```bash
 python testr.py dashboard examples
@@ -96,4 +103,3 @@ Set `TESTR_DEMO_FAILURES=1` when running the examples (or the dashboard pointed 
 
 ## Troubleshooting
 - Async tests require an async plugin (e.g., `pytest-asyncio`). The PyInstaller binary only includes packages from the env you built it in; if a target project uses extra pytest plugins, run via that project’s venv with `python /path/to/testr/testr.py dashboard /path/to/tests`, or rebuild the binary inside an env that has those plugins installed.
-- Textual panes don’t support copy/paste; to capture output, rerun the printed `pytest ...` command in your shell or pipe the dashboard run to a log file, e.g., `./dist/testr dashboard tests 2>&1 | tee /tmp/testr.log`.
