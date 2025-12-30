@@ -13,14 +13,15 @@ A TUI dashboard for pytest that shows live progress, groups failures by file/fea
 ## Quickstart
 1) Install (uses the repo’s `.venv`):
 ```bash
-. .venv/bin/activate
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-or:
+or if using **uv**:
 
 ```bash
-. .venv/bin/activate
+uv venv
+source .venv/bin/activate
 uv sync
 ```
 
