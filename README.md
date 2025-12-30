@@ -82,5 +82,12 @@ Set `TESTR_DEMO_FAILURES=1` when running the examples (or the dashboard pointed 
 - Install PyInstaller into your environment: `pip install pyinstaller`.
 - On Linux/macOS terminals: run `./scripts/build_pyinstaller.sh`. It outputs `dist/testr`.
 - On Windows PowerShell: `powershell -ExecutionPolicy Bypass -File scripts/build_pyinstaller.ps1`. It outputs `dist/testr.exe`.
-- PyInstaller builds are OS-specific; create Linux binaries on Linux and Windows `.exe` files on Windows (no cross-compiling).
+- PyInstaller builds are OS-specific; create Linux binaries on Linux, macOS binaries on macOS, and Windows `.exe` files on Windows (no cross-compiling). The Linux/macOS script is identical; just run it on the target OS.
+- On macOS, use a Python build that matches your target architecture (arm64 vs x86_64); build separately if you need both.
 - The scripts collect Textual/Trogon assets automatically; point the resulting binary at your tests or `examples/` (optionally with `TESTR_DEMO_FAILURES=1`).
+
+### Adding the binary to your PATH
+- Linux/macOS (temporary): `export PATH="/path/to/testr/dist:$PATH"` for the current shell.
+- Linux/macOS (permanent): add that `export` line to `~/.zshrc` or `~/.bashrc`, then `source` the file or open a new shell.
+- Windows PowerShell (temporary): `$env:Path = "C:\\path\\to\\testr\\dist;$env:Path"` for the current session.
+- Windows PowerShell (permanent): add that line (or use `[Environment]::SetEnvironmentVariable("Path", "...", "User")`) in your profile script, then start a new session.
