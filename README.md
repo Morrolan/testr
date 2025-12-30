@@ -8,6 +8,8 @@ A TUI dashboard for pytest that shows live progress, groups failures by file/fea
 - One-key reruns: `r` for failed-only, `a` for all.
 - Trogon-powered launcher (`tui`) for interactive startup.
 
+![Pytest dashboard screenshot](docs/screenshot_1.png)
+
 ## Quickstart
 1) Install (uses the repo’s `.venv`):
 ```bash
@@ -30,7 +32,7 @@ python testr.py tui
 - `s` — rerun selected failure row(s)
 - `a` — rerun all tests
 - `x` — stop the current run
-- `q` — quit
+- `q` / `Ctrl+q` / `Esc` — quit
 
 Selecting a failure row shows its traceback in the “Failure Details” pane; rerunning with `s` uses only the selected nodeids.
 
@@ -91,3 +93,7 @@ Set `TESTR_DEMO_FAILURES=1` when running the examples (or the dashboard pointed 
 - Linux/macOS (permanent): add that `export` line to `~/.zshrc` or `~/.bashrc`, then `source` the file or open a new shell.
 - Windows PowerShell (temporary): `$env:Path = "C:\\path\\to\\testr\\dist;$env:Path"` for the current session.
 - Windows PowerShell (permanent): add that line (or use `[Environment]::SetEnvironmentVariable("Path", "...", "User")`) in your profile script, then start a new session.
+
+## Troubleshooting
+- Async tests require an async plugin (e.g., `pytest-asyncio`). The PyInstaller binary only includes packages from the env you built it in; if a target project uses extra pytest plugins, run via that project’s venv with `python /path/to/testr/testr.py dashboard /path/to/tests`, or rebuild the binary inside an env that has those plugins installed.
+- Textual panes don’t support copy/paste; to capture output, rerun the printed `pytest ...` command in your shell or pipe the dashboard run to a log file, e.g., `./dist/testr dashboard tests 2>&1 | tee /tmp/testr.log`.

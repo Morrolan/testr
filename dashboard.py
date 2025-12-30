@@ -217,6 +217,8 @@ class TestDashboardApp(App):
         Binding("a", "rerun_all", "Run all tests"),
         Binding("x", "stop_run", "Stop run"),
         Binding("q", "quit", "Quit"),
+        Binding("ctrl+q", "quit", "Quit"),
+        Binding("escape", "quit", "Quit", show=False),
     ]
 
     def __init__(self, config: PytestConfig, **kwargs):
